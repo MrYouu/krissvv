@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+
+import NavigationBar from "./Components/NavigationBar";
+import Index from "./Components/Routes/Index";
+import Prices from "./Components/Routes/Prices";
+import Login from "./Components/Routes/Login";
+import Error404 from "./Components/Routes/Error404";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   return (
+      <Routes>
+         <Route path="/" element={<NavigationBar />}>
+            <Route index element={<Index />} />
+            <Route path="prices" element={<Prices />} />
+            {
+               //* Log in page
+               ["login", "Login", "logIn", "LogIn"].map(routeName => {
+                  return <Route path={routeName} element={<Login />} key={routeName} />;
+               })
+            }
+         </Route>
+         <Route path="*" element={<Error404 />} />
+      </Routes>
+   );
 }
 
 export default App;

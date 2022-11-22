@@ -29,14 +29,14 @@ body
 
 ::selection
 {
-   color: var(--textPrimaryColor);
-   background: #60906d;
+   color: #f8f8f8;
+   background: #0303ad;
 }
 
 ::-moz-selection
 {
-   color: var(--textPrimaryColor);
-   background: #60906d;
+   color: #f8f8f8;
+   background: #0303ad;
 }
 
 ::-webkit-scrollbar
@@ -80,10 +80,15 @@ body
    --defaultSideSpace: 20px;
 
    --backgroundColor: #f8f8f8;
+   --backgroundColor2: #e8e8e8;
+   --backgroundColor3: #d8d8d8;
 
    --textPrimaryColor: #111111;
    --textPrimaryColor00: #11111100;
    --textPrimaryColor10: #11111110;
+   --textPrimaryColor60: #11111160;
+
+   --textErrorColor: #d63944;
 
    --textInButtonColor: #f8f8f8;
    --primaryColor: #0201fb;
@@ -301,7 +306,7 @@ body
 }
 
 .inputField.Disabled { opacity: .5; }
-.inputField:has(.inputFieldInput.open) { z-index: 10; }
+.inputField:has(.inputFieldPhoneNumber.open) { z-index: 10; }
 
 .inputField .inputFieldHolder
 {
@@ -315,32 +320,29 @@ body
 .inputField.withError .inputFieldHolder { margin-bottom: 5px; }
 
 .inputField .inputFieldHolder input,
-.inputField .inputFieldInput
+.inputField .inputFieldPhoneNumber
 {
    position: relative;
-   width: 100%;
+   width: calc(100% - 20px * 2);
    height: auto;
    top: 0;
    left: 0;
    font-size: 16px;
    line-height: 20px;
    color: var(--textPrimaryColor);
-   background-color: #333333;
+   background-color: var(--backgroundColor2);
    border-radius: 10px;
    border: none;
    outline: none;
    padding: 10px 20px;
 }
 
-.inputField .inputFieldInput
-{
-   padding: 10px 20px 10px calc(var(--inputFieldPhoneNumberDropdownWidth) + 10px);
-}
+.inputField .inputFieldPhoneNumber { padding: 10px 20px 10px calc(var(--inputFieldPhoneNumberDropdownWidth) + 10px); }
 
 .inputField.withLeftIcon .inputFieldHolder input { padding: 10px 20px 10px calc(10px + 20px + 10px); }
 .inputField.Disabled .inputFieldHolder input { cursor: not-allowed; }
 
-.inputField .inputFieldHolder input::placeholder { color: var(--textPrimaryColor)60; }
+.inputField .inputFieldHolder input::placeholder { color: var(--textPrimaryColor60); }
 
 .inputField .inputFieldHolder input::-webkit-calendar-picker-indicator { display: none; }
 .inputField .inputFieldHolder input::-webkit-outer-spin-button,
@@ -364,7 +366,7 @@ body
    max-height: 18px;
    top: 50%;
    left: 10;
-   color: var(--textPrimaryColor)60;
+   color: var(--textPrimaryColor60);
    transform: translateY(-50%);
    margin: 0px 1px;
    pointer-events: none;
@@ -373,12 +375,12 @@ body
 .inputField .inputFieldHolder input:focus ~ .inputFieldIcon { color: var(--textPrimaryColor)a0; }
 
 .inputField.withError .inputFieldHolder .inputFieldIcon,
-.inputField.withError .inputFieldHolder input:focus ~ .inputFieldIcon { color: #d63944; }
+.inputField.withError .inputFieldHolder input:focus ~ .inputFieldIcon { color: var(--textErrorColor); }
 
 .inputField .inputFieldErrorText
 {
    font-weight: 600;
-   color: #d63944;
+   color: var(--textErrorColor);
 }
 
 .inputField .inputFieldPhoneNumberDropdown
@@ -581,7 +583,14 @@ body
    overflow-x: hidden;
 }
 
-.required { padding-left: 15px; }
+.required
+{
+   width: calc(100% - var(--defaultSideSpace) * 2 - 15px);
+   padding-left: 15px;
+}
+
+.required.free,
+.required.total { width: calc(100% - 15px); }
 
 .required::after
 {
@@ -591,7 +600,7 @@ body
    left: 0;
    font-size: 20px;
    font-weight: bolder;
-   color: #d63944;
+   color: var(--textErrorColor);
 }
 
 .mainTitle a { color: var(--primaryColor); }
@@ -653,7 +662,7 @@ body
 .alertsHolder .Alert.info::before { background-color: #3c9ae7; }
 .alertsHolder .Alert.success::before { background-color: var(--primaryColor); }
 .alertsHolder .Alert.warn::before { background-color: #ecb827; }
-.alertsHolder .Alert.error::before { background-color: #d63944; }
+.alertsHolder .Alert.error::before { background-color: var(--textErrorColor); }
 
 .alertsHolder .Alert .alertIcon
 {
@@ -676,7 +685,7 @@ body
 .alertsHolder .Alert.info .alertIcon { color: #3c9ae7; }
 .alertsHolder .Alert.success .alertIcon { color: var(--primaryColor); }
 .alertsHolder .Alert.warn .alertIcon { color: #ecb827; }
-.alertsHolder .Alert.error .alertIcon { color: #d63944; }
+.alertsHolder .Alert.error .alertIcon { color: var(--textErrorColor); }
 
 .alertsHolder .Alert .alertContent
 {
@@ -1173,6 +1182,50 @@ body
 /*#region thisRegion */
 
 /*#endregion thisRegion */
+
+/*#region Friends christmas */
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+.fontFamilyLobster { font-family: 'Lobster', cursive; }
+
+.mainImage
+{
+   position: relative;
+   width: calc(100% - var(--defaultSideSpace) * 2);
+   max-width: 260px;
+   height: auto;
+   top: 0;
+   left: 50%;
+   transform: translateX(-50%);
+}
+
+.Button.red { background-color: #ff6f61; }
+
+.santaImage
+{
+   position: relative;
+   width: 120px;
+   height: auto;
+   top: 0;
+   left: calc(100% - 30px);
+   transform: translateX(-100%);
+}
+
+span.from
+{
+   color: #f8f8f8;
+   background-color: #029019;
+   border-radius: 10px;
+   padding: 4px 8px;
+}
+
+span.to
+{
+   color: #f8f8f8;
+   background-color: #ff6f61;
+   border-radius: 10px;
+   padding: 4px 8px;
+}
+/*#endregion Friends christmas */
 
 img
 {
